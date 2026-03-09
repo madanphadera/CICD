@@ -140,7 +140,7 @@ export default function App() {
 									fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 									fontWeight: 900,
 								})}>
-								Techaxis TODO lists
+								Techaxis TODO lists Dockerized
 							</Title>
 							<ActionIcon
 								color={'blue'}
