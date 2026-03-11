@@ -24,13 +24,11 @@ describe("Todo App", () => {
 
   test("opens modal when new task button is clicked", () => {
     render(<App />);
-    
-    const button = screen.getByText(/New Task/i);
+    const button = screen.getByRole("button", { name: /New Task/i });
     fireEvent.click(button);
-
-    const modalTitle = screen.getByText(/New Task/i);
-    expect(modalTitle).toBeInTheDocument();
-  });
+    const modalTitles = screen.getAllByText(/New Task/i);
+    expect(modalTitles.length).toBeGreaterThan(1);
+   });
 
   test("task input fields appear in modal", () => {
     render(<App />);
@@ -43,5 +41,6 @@ describe("Todo App", () => {
     expect(titleInput).toBeInTheDocument();
     expect(summaryInput).toBeInTheDocument();
   });
+
 
 });
