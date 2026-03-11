@@ -8,7 +8,6 @@ jobs:
     runs-on: self-hosted
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -20,12 +19,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2
+      - name: Run tests with coverage
+        run: npm test -- --coverage --watchAll=false
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: http://172.29.55.154:9000
         with:
           args: >
-              -Dsonar.projectKey=reactapplication
-              
+            -Dsonar.projectKey=reactapplication
+            -Dsonar.sources=src
+            -Dsonar.tests=src
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
