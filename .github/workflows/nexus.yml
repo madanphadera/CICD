@@ -26,6 +26,10 @@ jobs:
         env:
          CI: false
 
+      - name: Package build
+        run: |
+          zip -r react-build-${{ github.sha }}.zip build
+
       - name: Upload to Nexus
         run: |
           curl -u ${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }} \
