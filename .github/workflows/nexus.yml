@@ -1,4 +1,4 @@
-name: React Static CI
+name: NEXUS React Static CI
 
 on:
   workflow_dispatch:
